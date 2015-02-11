@@ -1,15 +1,15 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2010 Zen Cart Development Team
+ * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: category_product_listing.php 17534 2010-09-08 19:50:34Z wilt $
+ * @version GIT: $Id: Author: Ian Wilson  Wed Mar 12 12:53:44 2014 +0000 Modified in v1.5.3 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
-
+if (!isset($_GET['page'])) $_GET['page'] = '';
 if (isset($_GET['set_display_categories_dropdown'])) {
   $_SESSION['display_categories_dropdown'] = $_GET['set_display_categories_dropdown'];
 }
@@ -35,7 +35,7 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
     echo HEADING_TITLE_SEARCH_DETAIL . ' ' . zen_draw_input_field('search') . zen_hide_session_id();
     if (isset($_GET['search']) && zen_not_null($_GET['search'])) {
       $keywords = zen_db_input(zen_db_prepare_input($_GET['search']));
-      echo '<br />' . TEXT_INFO_SEARCH_DETAIL_FILTER . $keywords;
+      echo '<br />' . TEXT_INFO_SEARCH_DETAIL_FILTER . zen_output_string_protected($_GET['search']);
     }
     echo '</form>';
 ?>
@@ -45,13 +45,13 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
                 <td class="smallText" align="right">
 <?php
   if ($_SESSION['display_categories_dropdown'] == 0) {
-    echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'set_display_categories_dropdown=1&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'cross.gif', IMAGE_ICON_STATUS_OFF) . '</a>&nbsp;&nbsp;';
+    echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'set_display_categories_dropdown=1' . (isset($_GET['cID']) ? '&cID=' . (int)$_GET['cID'] : '') . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'cross.gif', IMAGE_ICON_STATUS_OFF) . '</a>&nbsp;&nbsp;';
     echo zen_draw_form('goto', FILENAME_CATEGORIES, '', 'get');
     echo zen_hide_session_id();
     echo HEADING_TITLE_GOTO . ' ' . zen_draw_pull_down_menu('cPath', zen_get_category_tree(), $current_category_id, 'onChange="this.form.submit();"');
     echo '</form>';
   } else {
-    echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'set_display_categories_dropdown=0&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'tick.gif', IMAGE_ICON_STATUS_ON) . '</a>&nbsp;&nbsp;';
+    echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'set_display_categories_dropdown=0' . (isset($_GET['cID']) ? '&cID=' . (int)$_GET['cID'] : '') . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'tick.gif', IMAGE_ICON_STATUS_ON) . '</a>&nbsp;&nbsp;';
     echo HEADING_TITLE_GOTO;
   }
 ?>
@@ -172,12 +172,18 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
                 <td class="dataTableContent" width="50" align="left">
 <?php
       if ($categories->fields['categories_status'] == '1') {
-        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag_categories&flag=0&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>';
+        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag_categories&flag=0&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>';
       } else {
-        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag_categories&flag=1&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>';
+        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag_categories&flag=1&cID=' . $categories->fields['categories_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>';
       }
-      if (zen_get_products_to_categories($categories->fields['categories_id'], true, 'products_active') == 'true') {
-        echo '&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_LINKED);
+      if (SHOW_CATEGORY_PRODUCTS_LINKED_STATUS == 'true')
+      {
+        if (zen_get_products_to_categories($categories->fields['categories_id'], true, 'products_active') == 'true') {
+          echo '&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_LINKED);
+        }
+      } else
+      {
+        echo '&nbsp;&nbsp;';
       }
 ?>
                 </td>
@@ -289,7 +295,7 @@ if (!isset($_SESSION['display_categories_dropdown'])) {
     }
 // Split Page
 // reset page when page is unknown
-if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['pID'] != '') {
+if (($_GET['page'] == '1' or $_GET['page'] == '') and isset($_GET['pID']) && $_GET['pID'] != '') {
   $old_page = $_GET['page'];
   $check_page = $db->Execute($products_query_raw);
   if ($check_page->RecordCount() > MAX_DISPLAY_RESULTS_CATEGORIES) {
@@ -340,16 +346,24 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['pID'] != '') {
 // Split Page
 ?>
                 <td class="dataTableContent" width="20" align="right"><?php echo $products->fields['products_id']; ?></td>
-                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link(FILENAME_PRODUCT, 'cPath=' . $cPath . '&pID=' . $products->fields['products_id'] . '&action=new_product_preview&read=only' . '&product_type=' . $products->fields['products_type'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) . '</a>&nbsp;' . $products->fields['products_name']; ?></td>
+                <td class="dataTableContent"><?php echo '<a href="' . zen_href_link($type_handler, 'cPath=' . $cPath . '&pID=' . $products->fields['products_id'] . '&action=new_product_preview&read=only' . '&product_type=' . $products->fields['products_type'] . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_ICONS . 'preview.gif', ICON_PREVIEW) . '</a>&nbsp;' . $products->fields['products_name']; ?></td>
                 <td class="dataTableContent"><?php echo $products->fields['products_model']; ?></td>
                 <td colspan="2" class="dataTableContent" align="right"><?php echo zen_get_products_display_price($products->fields['products_id']); ?></td>
                 <td class="dataTableContent" align="right"><?php echo $products->fields['products_quantity']; ?></td>
                 <td class="dataTableContent" width="50" align="left">
 <?php
       if ($products->fields['products_status'] == '1') {
-        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag&flag=0&pID=' . $products->fields['products_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_green_on.gif', IMAGE_ICON_STATUS_ON) . '</a>';
+        echo zen_draw_form('setflag_products', FILENAME_CATEGORIES, 'action=setflag&pID=' . $products->fields['products_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : ''));?>
+        <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_green_on.gif" title="<?php echo IMAGE_ICON_STATUS_ON; ?>" />
+        <input type="hidden" name="flag" value="0" />
+        </form>
+<?php
       } else {
-        echo '<a href="' . zen_href_link(FILENAME_CATEGORIES, 'action=setflag&flag=1&pID=' . $products->fields['products_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '')) . '">' . zen_image(DIR_WS_IMAGES . 'icon_red_on.gif', IMAGE_ICON_STATUS_OFF) . '</a>';
+        echo zen_draw_form('setflag_products', FILENAME_CATEGORIES, 'action=setflag&pID=' . $products->fields['products_id'] . '&cPath=' . $cPath . (isset($_GET['page']) ? '&page=' . $_GET['page'] : '') . ((isset($_GET['search']) && !empty($_GET['search'])) ? '&search=' . $_GET['search'] : ''));?>
+        <input type="image" src="<?php echo DIR_WS_IMAGES ?>icon_red_on.gif" title="<?php echo IMAGE_ICON_STATUS_OFF; ?>"/>
+        <input type="hidden" name="flag" value="1" />
+        </form>
+<?php
       }
       if (zen_get_product_is_linked($products->fields['products_id']) == 'true') {
         echo '&nbsp;&nbsp;' . zen_image(DIR_WS_IMAGES . 'icon_yellow_on.gif', IMAGE_ICON_LINKED) . '<br>';
@@ -420,7 +434,7 @@ if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['pID'] != '') {
 <form name="newproduct" action="<?php echo zen_href_link(FILENAME_CATEGORIES, '', 'NONSSL'); ?>" method = "get"><?php echo (empty($_GET['search']) ? zen_image_submit('button_new_product.gif', IMAGE_NEW_PRODUCT) : ''); ?>
 <?php
   $sql = "select ptc.product_type_id, pt.type_name from " . TABLE_PRODUCT_TYPES_TO_CATEGORY . " ptc, " . TABLE_PRODUCT_TYPES . " pt
-          where ptc.category_id = '" . $current_category_id . "'
+          where ptc.category_id = '" . (int)$current_category_id . "'
           and pt.type_id = ptc.product_type_id";
   $restrict_types = $db->Execute($sql);
   if ($restrict_types->RecordCount() >0 ) {

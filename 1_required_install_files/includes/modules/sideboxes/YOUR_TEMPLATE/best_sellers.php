@@ -3,10 +3,10 @@
  * best_sellers sidebox - displays selected number of (usu top ten) best selling products
  *
  * @package templateSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: best_sellers.php 2718 2005-12-28 06:42:39Z drbyte $
+ * @version $Id: best_sellers.php 18941 2011-06-13 22:12:42Z wilt $
  */
 
 // test if box should display
@@ -30,7 +30,8 @@
   }
 
   if ($show_best_sellers == true) {
-    if (isset($current_category_id) && ($current_category_id > 0)) {
+    $limit = (trim(MAX_DISPLAY_BESTSELLERS) == "") ? "" : " LIMIT " . (int)MAX_DISPLAY_BESTSELLERS;
+  	if (isset($current_category_id) && ($current_category_id > 0)) {
       $best_sellers_query = "select distinct p.products_id, pd.products_name, p.products_ordered
                              from " . TABLE_HIDE_CATEGORIES . " h, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd, "
                                     . TABLE_PRODUCTS_TO_CATEGORIES . " p2c, " . TABLE_CATEGORIES . " c
@@ -42,15 +43,14 @@
                              and p2c.categories_id = c.categories_id
                              and '" . (int)$current_category_id . "' in (c.categories_id, c.parent_id)
 							 and (p.master_categories_id = h.categories_id and h.visibility_status !=2) 
-                             order by p.products_ordered desc, pd.products_name
-                             limit " . MAX_DISPLAY_BESTSELLERS;
+                             order by p.products_ordered desc, pd.products_name";
 
+      $best_sellers_query .= $limit;
 /*//  Begin hideCategories code
 	  $best_sellers_query = str_replace(TABLE_PRODUCTS . ' p,',TABLE_PRODUCTS . ' p LEFT JOIN ' . TABLE_HIDE_CATEGORIES . ' h ON (p.master_categories_id = h.categories_id),', $best_sellers_query);
 	  $best_sellers_query = str_replace('where', 'WHERE (h.visibility_status < 2 OR h.visibility_status IS NULL) AND', $best_sellers_query);
 //  End hideCategories code*/
       $best_sellers = $db->Execute($best_sellers_query);
-
     } else {
       $best_sellers_query = "select distinct p.products_id, pd.products_name, p.products_ordered
                              from " . TABLE_HIDE_CATEGORIES . " h, " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd
@@ -59,16 +59,15 @@
                              and p.products_id = pd.products_id
                              and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'
 							 and (p.master_categories_id = h.categories_id and h.visibility_status !=2)
-                             order by p.products_ordered desc, pd.products_name
-                             limit " . MAX_DISPLAY_BESTSELLERS;
+                             order by p.products_ordered desc, pd.products_name";
 
+      $best_sellers_query .= $limit;
 /*//  Begin hideCategories code
 	  $best_sellers_query = preg_replace('/, ' . TABLE_PRODUCTS_DESCRIPTION . ' pd(\s*)where/', ' LEFT JOIN ' . TABLE_HIDE_CATEGORIES . ' h ON (p.master_categories_id = h.categories_id), products_description pd WHERE (h.visibility_status < 2 OR h.visibility_status IS NULL) AND', $best_sellers_query);
 //  End hideCategories code*/
       $best_sellers = $db->Execute($best_sellers_query);
     }
-
-    if ($best_sellers->RecordCount() >= MIN_DISPLAY_BESTSELLERS) {
+if ($best_sellers->RecordCount() >= MIN_DISPLAY_BESTSELLERS) {
       $title =  BOX_HEADING_BESTSELLERS;
       $box_id =  'bestsellers';
       $rows = 0;

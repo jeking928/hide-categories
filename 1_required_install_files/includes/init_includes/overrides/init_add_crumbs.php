@@ -4,10 +4,10 @@
  * see {@link  http://www.zen-cart.com/wiki/index.php/Developers_API_Tutorials#InitSystem wikitutorials} for more details.
  *
  * @package initSystem
- * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Copyright 2003-2011 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: init_add_crumbs.php 6948 2007-09-02 23:30:49Z drbyte $
+ * @version $Id: init_add_crumbs.php 18697 2011-05-04 14:35:20Z wilt $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -16,6 +16,7 @@ $breadcrumb->add(HEADER_TITLE_CATALOG, zen_href_link(FILENAME_DEFAULT));
 /**
  * add category names or the manufacturer name to the breadcrumb trail
  */
+if (!isset($robotsNoIndex)) $robotsNoIndex = false;
 // might need isset($_GET['cPath']) later ... right now need $cPath or breaks breadcrumb from sidebox etc.
 if (isset($cPath_array) && isset($cPath)) {
   for ($i=0, $n=sizeof($cPath_array); $i<$n; $i++) {
