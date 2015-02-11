@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta name="ROBOTS" content="nofollow,noindex">  
+  <meta name="ROBOTS" content="noarchive">  
+  <meta http-equiv="pragma" content="no-cache">  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">  
+  <meta http-equiv="content-language" content="en">  
+  <meta name="author" content="C Jones Over the Hill Web Consulting (http://overthehillweb.com)">  
+  <meta name="keywords" content="button, buttons, generator, construction, kit, Zen Cart, multi-language, icons, online-shop">  
+  <meta name="description" content="To allow admin to declare categories (and all products within) as hidden, to one degree or another. This was designed for a very specific purpose, so its usefulness in your situation is up to you to determine.">
+  <title>hideCategories 2.0</title>
+    
+  <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
+  <script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script></head><body>
+<div id="wrapper">
+<h2>hideCategories 2.0</h2>
+<p>Support thread: <a href="http://www.zen-cart.com/forum/showthread.php?t=52564" target="_blank">http://www.zen-cart.com/forum/showthread.php?t=52564</a><br>
+Download link: <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=391" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=391</a></p>
+<div id="slidetabsmenu" style="display: none;">
+<ul>
+
+  <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Purpose &amp; Aim</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+  <li> <a onClick="expandcontent('sc3', this)" href="javascript:void(0)"><span>Usage</span></a></li>
+  <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Files</span></a></li>
+  <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Credits &amp; History</span></a></li>
+  <li> <a onClick="expandcontent('sc6', this)" href="javascript:void(0)"><span>License</span></a></li></ul>
+</div>
+<br style="clear: both;">
+
+<!--Begin tabcontainer-->
+<div id="tabcontentcontainer">
+
+
+<!--Begin sc1-->
+<div class="tabcontent" id="sc1" style="display: block;">
+<div class="textcontent">
+<h3>PURPOSE &amp; AIM</h3>
+
+<p>hideCategories is a Specialized contribution that allows the admin to declare categories (and all products within) as "hidden", to one degree or another.</p>
+
+<p>Folders can either be hidden from the main menu (sidebox and main page) or you can go a step further and hide them from All Products, New Products, 
+Featured Products, Advanced Search, and Best Sellers as well.</p>
+
+<p>This module was designed for a very specific purpose, so its usefulness in your situation is up to you to determine. Whether or not this is of any use to your 
+store is completely up to you to find out. hideCategories was developed by the original author with the purpose of using it for "custom packages"... ie: having custom 
+one-off products or packages that are intended for a specific person and not the general surfing public.</p>
+
+<div class="regularlist">
+<strong>Features</strong>
+<ul>
+	<li>You can declare a category as:</li>
+		<ul>
+			<li>Normal</li>
+				<ul>
+					<li>Products display as normal</li>
+				</ul>
+		</ul>
+		<ul>
+			<li>Hidden from menus</li>
+				<ul>
+					<li>The "Hidden from menus" option means the categories side box and index listing page won't list that category for public viewing. However, the 
+					category behaves normally other than that (products within ARE listed in the "All Products" link and are available through search, etc).</li>
+				</ul>
+		</ul>
+		<ul>
+			<li>Hidden (Direct-link only)</li>
+				<ul>
+					<li>The "Hidden (Direct-link only)" option hides your hidden categories from searches and the "All", "Featured" and "New" listings as well as search 
+					results. This is similar to disabling the product/category except that it can still be seen if the customer has a <b>direct link</b> to the products URL.</li>
+				</ul>
+		</ul>
+	<li>Your choice is made in the normal categories admin page when you <b>EDIT</b> a product.</li>
+</ul>
+
+<strong>Limitations</strong>
+<ul>
+	  <li>Many DEFAULT Zen Cart listings, menus, and pages are included -- so "as is" this module should cover MOST store configurations. However, there may be listings, 
+	  menus, or pages from other mods that the hidden status may not be applied where you might expect otherwise.</li>
+      <li>If there are places where you need to hide a product which is not included in this module, you can (and SHOULD) take a look at the files in this module to help 
+	  guide you in how to add the hidden functionality to other lists, menus, etc.</li>
+      <li>Hidden products/categories are only hidden from the following sideboxes:</li>
+		<ul>
+		  <li><strong>Categories</strong></li>
+		  <li><strong>BestSellers</strong></li>
+		  <li><strong>What's New</strong></li>
+		  </ul>
+	  <li>The "specials" menu link or sidebox will not be hidden. However, this should not pose any real issues with using this module since truthfully there is no reason 
+	  I can think of where a shopowner would add a hidden product to their store specials.</li>
+</ul>
+</div>
+
+<p>Ready to get started? Just follow the installation instructions</p>
+
+<p>Any questions, just hit the forums: http://www.zen-cart.com/forum/showthread.php?t=52564</p>
+
+<strong>!!READ EVERYTHING!!</strong>
+<p>I very strongly recommend you read through the *entire* FEATURES section. There you will find out exactly what hideCategories can do.</p>
+
+</div>
+</div>
+<!--End sc1-->
+
+
+<!--Begin sc2-->
+<div class="tabcontent" id="sc2" style="display: block;">
+<div class="textcontent">
+<h3>INSTALLATION </h3>
+
+<p></p><strong>!!!!!BACKUP YOUR STORE BEFORE YOU BEGIN!!!!!</strong>
+
+<div class="regularlist">
+<p><strong>New Installation</strong></p>
+<ol>
+  <li>Unzip the package to your local hard drive.</li>
+  <li>Open the <strong>1_required_install_files</strong> folder.</li>
+  <li>Rename the <strong>YOUR_TEMPLATE</strong> and <strong>YOUR_ADMIN_FOLDER</strong> folders to match the name of your shop's template and admin directories.</li>
+  <li>Use the included sql file to update your database (adds a new table - edits nothing).</li>
+  <li>Copy all the files in the admin and includes folders to your store's respective folders. *CAUTION* Two of the admin files and one of the includes files are core file over-writes!
+  <br><br>
+  The admin section doesn't offer the same flexibility that the store front end does, so this was unavoidable. This is not a big deal until you upgrade to a new version of Zen Cart and you'll have to 
+  carefully merge the edits then.
+  <br><br>
+  There is only one core overwrite in the includes file. Carefully merge the content of includes/modules/pages/advanced_search_result/header.php with your existing file.
+  <br><br>
+  <strong>NOTE:</strong> Many of the other files are not core files, but they may already exist if you've modified your cart already. If so, merge them as you see fit to integrate the necessary parts into your page(s).
+  <br><br>
+  <strong>(copy ALL of the add-on files to your store!! Most module install issues are caused by storeowners who decide to NOT load ALL of the module files)</strong></li>
+  <li>If you followed these instructions to the letter, you are ready to use the hideCategories module. (Read the <strong>Usage</strong> tab BEFORE you use this module for the first time!)</li>
+</ol>
+
+<p><strong>Upgrading from 2.0 to 2.1</strong></p>
+<ul>
+   <li>The only change from 2.0 to 2.1 is the addition of includes/modules/pages/advanced_search_result/header. IF YOU ARE ONLY UPGRADING FROM 2.0 to 2.1 the only change you have to make is to that file - there is no reason to reload all of the other files or run the sql statement again.</li>
+</ul>
+
+<p><strong>Optional Install Files</strong></p>
+
+<p>Also included is a file which customizes the look of your hidden product product information page to help further prevent other products in your hidden categories from being "found". This 
+custom template removes the "Next", "Previous", and "Listing" buttons/links from the product information page for your hidden products. It also removes the category images/links from the product
+information page. It requires using one of the other Zen Cart product types to facilitate this.</p>
+
+<ol>
+  <li>Open the <strong>2_optional_install_files</strong> folder.</li>
+  <li>Rename the <strong>YOUR_TEMPLATE</strong> folder to match the name of your shop's template directory.</li>
+  <li>Copy all the files in the includes folders to your store's respective folders.</li>
+</ol>
+
+<p>To configure this new product_info template, do the following:</p>
+<ol>
+  <li>Go to Catalog &gt; Product Types</li>
+  <li>Edit "Document - Product"</li>
+  <li>Change "Product Type Name:" to "Product - Hidden"</li>
+  <li>Select "Product Hidden" in the "This product type should be considered a sub-type of" dropdown</li>
+</ol>
+
+<p>To apply the hidden product template to your hidden products follow these steps:</p>
+<ol>
+  <li>Go to Catalog &gt; Categories/Products</li>
+  <li>Create a new category</li>
+  <li>Change "Restrict to Product Type" to "Product - Hidden"</li>
+  <li>Click "Add include SubCategories"</li>
+  <li>Click "Save"</li>
+  <li>After saving the category, set the "Category Visibility"
+  </li>
+</ol>
+</div>
+
+<p><strong>Un-Installation</strong></p>
+
+<p>Reverse everything you did (remove all the files remove the edits from the modified core files, restore Zen Cart defaults, etc..) Run the uninstall SQL file to remove the Hide Categories table. 
+It is best to simply keep a good pre-install backup set so you can restore if you decide this isn't what you want.</p>
+
+</div>
+</div>
+<!--End sc2-->
+
+
+<!--Begin sc3-->
+<div class="tabcontent" id="sc3" style="display: block;">
+<div class="textcontent">
+<h3>USAGE</h3><br>
+
+<div class="regularlist">
+<p>This contrib is very simple to use, but takes some planning to use well. From your admin panel, click the Catalog menu and choose Categories/Products. Whenever you EDIT a category, you will now
+be given the option to hide it (as described earlier).</p>
+
+<p><strong>FOR EXISTING STORES:</strong> You will need to open ALL your EXISTING categories and re-save them in order to apply the hideCategories changes. Otherwise some places where categories 
+should be hidden will not work correctly, and some places where categories should NOT be hidden may not display correctly.</p>
+
+<p><strong>NOTE:</strong> The hidden feature is ONLY available when you <strong>EDIT</strong>, not when you <strong>CREATE</strong> a new category. You must <strong>create your category 1st first</strong>, 
+then go back and edit it. You'll notice the folder icon changes to give you a visual cue that it is hidden.</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+</div>
+</div>
+<!--End sc3-->
+
+
+<!--Begin sc4-->
+<div class="tabcontent" id="sc4" style="display: block;">
+<div class="textcontent">
+<h3>FILES</h3>
+
+<div class="regularlist">
+<p><strong>Required Install Files</strong></p>
+<ul>
+  <li>changelog.html</li>
+  <li>readme.html</li>
+  <li>hideCategories.sql</li>
+  <li>admin/categories.php&nbsp; <strong>***CORE FILE OVERWRITE***</strong></li>
+  <li>admin/images/icons/folder_HIDDEN.gif</li>
+  <li>admin/images/icons/folder_NOMENU.gif</li>
+  <li>admin/images/icons/folder_NORMAL.gif</li>
+  <li>admin/includes/extra_datafiles/hideCategories.php</li>
+  <li>admin/includes/languages/english/extra_definitions/hideCategories.php</li>
+  <li>admin/includes/modules/category_product_listing.php&nbsp; <strong>***CORE FILE OVERWRITE***</strong></li>
+  <li>includes/extra_datafiles/hideCategories_database_names.php</li>
+  <li>includes/functions/extra_functions/functions_hideCategories.php</li>
+  <li>includes/init_includes/overrides/init_add_crumbs.php</li>
+  <li>includes/modules/YOUR_TEMPLATE/category_row.php</li>
+  <li>includes/modules/YOUR_TEMPLATE/product_listing.php</li>
+  <li>includes/modules/YOUR_TEMPLATE/categories_tabs.php</li>
+  <li>includes/modules/pages/advanced_search_result/header.php</li><strong>***CORE FILE OVERWRITE***</strong></li>
+  <li>includes/modules/sideboxes/YOUR_TEMPLATE/best_sellers.php</li>
+  <li>includes/modules/sideboxes/YOUR_TEMPLATE/whats_new.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/sideboxes/tpl_categories.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_advanced_search_default.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_features_products_default.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_products_all_default.php</li>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_products_new_default.php</li>
+</ul>
+
+<p><strong>Optional Install Files</strong>
+<ul>
+  <li>includes/templates/YOUR_TEMPLATE/templates/tpl_document_product_info_display.php</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+<!--End sc4-->
+
+
+<!--Begin sc5-->
+<div class="tabcontent" id="sc5" style="display: block;">
+<div class="textcontent">
+<h3>CREDITS &amp; HISTORY</h3>
+Based on hideCategories v1.10 - By s_mack (original author)<br><br>
+
+<h3>Acknowledgements</h3>
+<div class="regularlist">
+<ul>
+	<li>First, thanks to s_mack for creating the original hideCategories.</li>
+	<li>Thanks to all of the authors of the various threads that went into the crafting this updated version.</li>
+</ul>
+</div>
+
+
+<p>hideCategories v2.0 Updated by:</p>
+<div class="regularlist">
+<ul>
+	<li>C Jones  -Over the Hill Web Consulting (http://overthehillweb.com)</li>
+</ul>
+</div>
+
+<h2>Change Log</h2>
+
+<div class="regularlist">
+2.1 - 08/09/2011<br>
+<ul>
+	<li>Included code to hide a hidden category from search - added includes/modules/pages/advanced_search_result/header to files.</li>
+</ul>
+2.00 - 03/09/2011<br>
+<ul>
+	<li>updated files to reflect changes in Zen release 1.3.9h.</li>
+	<li>Incorporated the following posted modifications in to the codebase (some of these posted solutions were modified slightly so they worked properly and worked 
+	with the latest version of Zen Cart 1.3.9 - most notably the posted solution for hiding categories in the category tabs):</li>
+		<ul>
+			<li>Add Hidden Categories code to <span style="font-weight: bold;">What's New</span> sidebox</li>
+			<ul>
+				<li>http://www.zen-cart.com/forum/showpost.php?p=885697&amp;postcount=256</li>
+			</ul>
+			<li>Add Hidden Categories code to <span style="font-weight: bold;">Site Map</span> &amp; <span style="font-weight: bold;">Customers Who Bought</span> center box</li>
+			<ul>
+				<li>http://www.zen-cart.com/forum/showpost.php?p=466332&amp;postcount=94</li>
+			</ul>
+			<li>Add Hidden Categories code to <span style="font-weight: bold;">Categories Tab</span></li>
+			<ul>
+				<li>http://www.zen-cart.com/forum/showpost.php?p=687852&amp;postcount=195</li>
+			</ul>
+			<li>Included a modified <span style="font-weight: bold;">includes/templates/YOUR_TEMPLATE/templates/tpl_document_product_info_display.php</span> 
+			template specifically for hidden products. This template removes the top and bottom "Next" and "Previous" navigation buttons as well as the 
+			catgory link/image without compromising regular products. Requires using "document-product" product type to create your hidden categories.</li>
+			<ul>
+				<li>http://www.zen-cart.com/forum/showpost.php?p=466521&amp;postcount=96</li>
+				<li>http://www.zen-cart.com/forum/showpost.php?p=886281&amp;postcount=258</li>
+			</ul>
+		</ul>
+	<li>Corrected files which caused issues in MySQL 5</li>
+		<ul>
+			<li>http://www.zen-cart.com/forum/showpost.php?p=796893&postcount=237</li>
+			<li>http://www.zen-cart.com/forum/showpost.php?p=797169&postcount=238</li>
+		</ul>
+</ul>
+
+1.10 - 03/02/08<br>
+<ul>
+	<li>updated files to reflect changes in Zen releast 1.3.8a.</li>
+</ul>
+
+1.01 - 07/08/07<br>
+<ul>
+	<li>fixed bug relating to SQL error with carts that use table prefixes. If your cart is working with the old version, there is no need to upgrade.</li>
+</ul>
+
+1.00 - 11/27/06<br>
+<ul>
+	<li>initial release</li>
+</ul>
+</div>
+
+</div>
+</div>
+<!--End sc5-->
+
+
+<!--Begin sc6-->
+<div class="tabcontent" id="sc6" style="display: block;">
+<div class="textcontent">
+
+<h3>LICENSE</h3>
+<p>hideCategories 2.0 is released under the General Public License (see LICENSE.txt)</p>
+
+<p>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>Always backup your shop and database before making changes.</p>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+</div>
+<!--End sc6-->
+
+
+</div>
+<!--end tabcontainer-->
+<script type="text/javascript">document.getElementById('sc2').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc3').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc4').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc5').style.display = 'none';</script>
+<script type="text/javascript">document.getElementById('sc6').style.display = 'none';</script>
+<script type="text/javascript">ShowTabs()</script>
+<script type="text/javascript">
+// We only show the tab links if JavaScript is available/active.
+<!--
+if (document.getElementById("slidetabsmenu") != null) {
+  document.getElementById('slidetabsmenu').style.display = "block";
+}
+//-->
+</script><br>
+<br>
+<p><a href="http://validator.w3.org/check/referer" target="_blank"><img src="http://www.w3.org/Icons/valid-html401-blue.gif" alt="W3C validation logo" border="0" height="31" width="88"></a> <a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!" border="0" height="31" width="88"></a></p>
+<br>
+<br>
+</div>
+
+</body></html>
