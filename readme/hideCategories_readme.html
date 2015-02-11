@@ -8,12 +8,12 @@
   <meta name="author" content="C Jones Over the Hill Web Consulting (http://overthehillweb.com)">  
   <meta name="keywords" content="button, buttons, generator, construction, kit, Zen Cart, multi-language, icons, online-shop">  
   <meta name="description" content="To allow admin to declare categories (and all products within) as hidden, to one degree or another. This was designed for a very specific purpose, so its usefulness in your situation is up to you to determine.">
-  <title>hideCategories 2.0</title>
+  <title>hideCategories 2.2</title>
     
   <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css">  
   <script type="text/javascript" src="includes/jscript/jscript_tabs.js"></script></head><body>
 <div id="wrapper">
-<h2>hideCategories 2.0</h2>
+<h2>hideCategories 2.2</h2>
 <p>Support thread: <a href="http://www.zen-cart.com/forum/showthread.php?t=52564" target="_blank">http://www.zen-cart.com/forum/showthread.php?t=52564</a><br>
 Download link: <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=391" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=391</a></p>
 <div id="slidetabsmenu" style="display: none;">
@@ -134,6 +134,11 @@ one-off products or packages that are intended for a specific person and not the
    <li>The only change from 2.0 to 2.1 is the addition of includes/modules/pages/advanced_search_result/header. IF YOU ARE ONLY UPGRADING FROM 2.0 to 2.1 the only change you have to make is to that file - there is no reason to reload all of the other files or run the sql statement again.</li>
 </ul>
 
+<p><strong>Upgrading from 2.0 or 2.1 to 2.2</strong></p>
+<ul>
+	<li>There is no need to run the sql statement again, but all files should be replaced.  Be sure to pay special attention to the core overwrite files.</li>
+</ul>
+
 <p><strong>Optional Install Files</strong></p>
 
 <p>Also included is a file which customizes the look of your hidden product product information page to help further prevent other products in your hidden categories from being "found". This 
@@ -206,9 +211,9 @@ then go back and edit it. You'll notice the folder icon changes to give you a vi
 <div class="regularlist">
 <p><strong>Required Install Files</strong></p>
 <ul>
-  <li>changelog.html</li>
-  <li>readme.html</li>
-  <li>hideCategories.sql</li>
+  <li>readme.txt</li>
+  <li>install_hideCategories.sql</li>
+  <li>uninstall_hideCategories.sql</li>
   <li>admin/categories.php&nbsp; <strong>***CORE FILE OVERWRITE***</strong></li>
   <li>admin/images/icons/folder_HIDDEN.gif</li>
   <li>admin/images/icons/folder_NOMENU.gif</li>
@@ -257,9 +262,13 @@ Based on hideCategories v1.10 - By s_mack (original author)<br><br>
 	<li>Thanks to all of the authors of the various threads that went into the crafting this updated version.</li>
 </ul>
 </div>
+<p>v2.2 Updated by:</p>
+<div class="regularlist">
+	<ul>
+		<li>jeking - Wheaton Website Services (https://www.wheatonwebsiteservices.com)</li>
+	</ul>
 
-
-<p>hideCategories v2.0 Updated by:</p>
+<p>v2.0 Updated by:</p>
 <div class="regularlist">
 <ul>
 	<li>C Jones  -Over the Hill Web Consulting (http://overthehillweb.com)</li>
@@ -269,6 +278,10 @@ Based on hideCategories v1.10 - By s_mack (original author)<br><br>
 <h2>Change Log</h2>
 
 <div class="regularlist">
+2.2 - 02/10/2015<br>
+<ul>
+	<li>Updated for Zen Cart 1.5.4.</li>
+</ul>
 2.1 - 08/09/2011<br>
 <ul>
 	<li>Included code to hide a hidden category from search - added includes/modules/pages/advanced_search_result/header to files.</li>

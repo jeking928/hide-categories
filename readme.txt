@@ -1,0 +1,1 @@
+See /readme/hideCategories_readme.html
