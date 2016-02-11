@@ -462,7 +462,7 @@ $listing_sql = $select_str . $from_str . $where_str . $order_str;
 $zco_notifier->notify('NOTIFY_SEARCH_ORDERBY_STRING', $listing_sql);
 $breadcrumb->add(NAVBAR_TITLE_1, zen_href_link(FILENAME_ADVANCED_SEARCH));
 $breadcrumb->add(NAVBAR_TITLE_2);
-
+$breadcrumb->add(zen_output_string_protected($keywords));
 
 $result = new splitPageResults($listing_sql, MAX_DISPLAY_PRODUCTS_LISTING, 'p.products_id', 'page');
 if ($result->number_of_rows == 0) {
